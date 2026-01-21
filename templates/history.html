@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="mb-3">Link History</h2>
+<div class="card shadow-sm">
+    <table class="table table-striped mb-0">
+        <thead class="table-dark">
+            <tr>
+                <th>Original URL</th>
+                <th>Short Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for url in urls %}
+            <tr>
+                <td style="word-break: break-all;">
+                    <a href="{{ url.original_url }}" target="_blank">{{ url.original_url }}</a>
+                </td>
+                <td>
+                    <a href="{{ host_url }}{{ url.short_url }}" target="_blank">{{ host_url }}{{ url.short_url }}</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="2" class="text-center">No links shortened yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
